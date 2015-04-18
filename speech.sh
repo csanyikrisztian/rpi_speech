@@ -9,6 +9,7 @@ INPUT=$*
 STRINGNUM=0
 # PROXY="--proxy http://1.2.3.4:8080"
 PROXY=""
+LANG="en"
 
 ary=($INPUT)
 echo "---------------------------"
@@ -34,5 +35,5 @@ for key in "${!SHORT[@]}"; do
 	#echo "line: $key is: ${SHORT[$key]}"
 	echo "Playing line: $(($key+1)) of $(($STRINGNUM+1))"
 	NEXTURL=$(echo ${SHORT[$key]} | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
-	mpg123 $PROXY -q "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$NEXTURL"
+	mpg123 $PROXY -q "http://translate.google.com/translate_tts?ie=UTF-8&tl=$LANG&q=$NEXTURL"
 done
